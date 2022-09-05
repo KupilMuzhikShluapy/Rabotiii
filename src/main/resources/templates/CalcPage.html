@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+
+<header th:insert="blocks/Header" :: Header/>
+
+<body>
+
+<main>
+  <div style="margin-top:40px">
+    <center>
+      <h1>Калькулятор</h1>
+    </center>
+  </div>
+
+  <div style="margin-top:50px">
+    <center>
+      <form method="post" action="/Calc">
+        <div class="form-group">
+
+          <div class="container">
+            <div class="row align-items-start">
+              <div class="col-5">
+                <input type="number" th:value="${first}" style="font-size:32px" class="form-control" name="first" placeholder="Первое число">
+              </div>
+
+              <div class="col-2">
+                <select name = "act" class="form-control" style="font-size:28px; text-align:center">
+                  <option value = "+">+</option>
+                  <option value = "-">-</option>
+                  <option value = "*">*</option>
+                  <option value = "/">/</option>
+                </select>
+              </div>
+
+              <div class="col-5">
+                <input type="number" th:value="${second}" style="font-size:32px" class="form-control" name="second" placeholder="Второе число">
+              </div>
+            </div>
+          </div>
+
+          <div style="margin-top:15px">
+            <h4 th:text="'Результат: ' + ${result}"/>
+          </div>
+
+          <input type="hidden" name="historyString" th:value="${historyString}">
+
+          <input type="submit" class="btn btn-primary" style="margin-top:75px; font-size:24px">
+
+          <div>
+            <input type="reset" value="Сбросить параметры" class="btn btn-danger" style="margin-top:10px"/>
+          </div>
+
+          <h5 style="margin-top:25px">Первое число = результат<input type="checkbox" name="resfir" th:checked="${resfir}" style="margin-left:10px"></h5>
+
+          <h6 style="margin-top:25px">Очистить историю<input type="checkbox" name="resethis" style="margin-left:10px"></h6>
+
+          <h6 style="margin-top:25px"><a th:href="@{/Calc?result={result}(result=${result})}">Открыть с фильтром</a></h6>
+
+        </div>
+      </form>
+
+    </center>
+
+  </div>
+
+
+<div>
+  <center>
+    <div style="width:1250px; height:2px; background: black; margin-top:50px"></div>
+  </center>
+</div>
+
+
+  <div style="margin-top:75px">
+    <center>
+      <h1>Калькулятор Get</h1>
+    </center>
+  </div>
+
+  <div style="margin-top:50px">
+    <center>
+      <form method="get" action="/Calc">
+        <div class="form-group">
+
+          <div class="container">
+            <div class="row align-items-start">
+              <div class="col-5">
+                <input type="number" th:value="${first}" style="font-size:32px" class="form-control" name="first" placeholder="Первое число">
+              </div>
+
+              <div class="col-2">
+                <select name = "act" class="form-control" style="font-size:28px; text-align:center">
+                  <option value = "+">+</option>
+                  <option value = "-">-</option>
+                  <option value = "*">*</option>
+                  <option value = "/">/</option>
+                </select>
+              </div>
+
+              <div class="col-5">
+                <input type="number" th:value="${second}" style="font-size:32px" class="form-control" name="second" placeholder="Второе число">
+              </div>
+            </div>
+          </div>
+
+          <div style="margin-top:15px">
+            <h4 th:text="'Результат: ' + ${result}"/>
+          </div>
+
+          <input type="hidden" name="historyString" th:value="${historyString}">
+
+          <input type="submit" class="btn btn-primary" style="margin-top:75px; font-size:24px">
+
+          <div>
+            <input type="reset" value="Сбросить параметры" class="btn btn-danger" style="margin-top:10px"/>
+          </div>
+
+          <h5 style="margin-top:25px">Первое число = результат<input type="checkbox" name="resfir" th:checked="${resfir}" style="margin-left:10px"></h5>
+
+          <h6 style="margin-top:25px">Очистить историю<input type="checkbox" name="resethis" style="margin-left:10px"></h6>
+
+          <h6 style="margin-top:25px"><a th:href="@{/Calc?result={result}(result=${result})}">Открыть с фильтром</a></h6>
+
+        </div>
+      </form>
+
+    </center>
+
+    <div>
+        <div style="width:750px; height:2px; background: black; margin-top:75px"></div>
+    </div>
+
+    <div style="margin-left:25px; margin-top:25px">
+
+      <h2>История:</h2>
+
+      <ul style="margin-top:25px">
+        <th:block th:each="history : ${historys}">
+          <li><h4 th:utext="${history}">..</h4></li>
+        </th:block>
+      </ul>
+
+    </div>
+
+  </div>
+
+</main>
+
+</body>
+
+<footer th:insert="blocks/Footer" :: Footer/>
+
+</html>
