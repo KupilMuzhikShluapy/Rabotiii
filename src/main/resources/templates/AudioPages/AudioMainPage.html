@@ -11,6 +11,59 @@
 
 <main>
 
+    <div style="margin-top:40px">
+        <center>
+            <h1>Аудио оборудование</h1>
+        </center>
+    </div>
+
+    <div class="container" style="margin-top:50px">
+        <div class="row align-items-start">
+            <div class="col-6">
+                <form method="post" action="/Audio/HeadphoneAdd">
+                    <button type="submit" class="btn btn-success">Добавить наушники</button>
+                </form>
+
+            </div>
+            <div class="col-6">
+                <div class="d-flex justify-content-end">
+                    <form method="post" action="/Audio/MickAdd">
+                        <button type="submit" class="btn btn-success">Добавить микрофон</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container" style="margin-top:20px">
+        <div class="row align-items-start">
+
+            <div class="col-6">
+                <div th:each="el : ${HeadphoneList}">
+                    <h3 th:text="${el.title}"/>
+                    <p th:text="${el.type}"/>
+                    <p th:text="${el.model}"/>
+                    <p th:text="${el.hzstart}"/>
+                    <p th:text="${el.hzend}"/>
+                    <p th:text="${el.price}"/>
+                </div>
+            </div>
+
+            <div class="col-6">
+                <div th:each="el : ${MickList}">
+                    <h3 th:text="${el.title}"/>
+                    <p th:text="${el.type}"/>
+                    <p th:text="${el.model}"/>
+                    <p th:text="${el.hzstart}"/>
+                    <p th:text="${el.hzend}"/>
+                    <p th:text="${el.price}"/>
+                    <p th:text="${el.soundsLike}"/>
+                    <p th:text="${el.country}"/>
+                </div>
+            </div>
+
+        </div>
+    </div>
 </main>
 
 </body>

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class AudioController {
@@ -28,6 +29,18 @@ public class AudioController {
         model.addAttribute("MickList",MickList);
 
         return "AudioPages/AudioMainPage";
+    }
+
+    @PostMapping("/Audio/HeadphoneAdd")
+    public String AudioHeadPostAddMap(){
+
+        return "AudioPages/HeadAdd";
+    }
+
+    @PostMapping("/Audio/MickAdd")
+    public String AudioMickPostAddMap(){
+
+        return "AudioPages/MickAdd";
     }
 
 }
