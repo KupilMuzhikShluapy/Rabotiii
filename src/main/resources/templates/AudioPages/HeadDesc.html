@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<header th:insert="blocks/Header" :: Header/>
+
+<body>
+
+<main>
+
+    <div th:each="el:${HeadPhoneList}" class="alert alert-into at-2">
+        <center>
+            <h1 th:text="${el.getTitle()}"/>
+            <h2 th:text="'Цена: ' + ${el.getPrice()}"/>
+        </center>
+
+        <div style="margin-top:50px; margin-left:50px">
+
+            <div>
+                <h3 th:text="'Модель: ' + ${el.getModel()}"/>
+                <h3 th:text="'Тип: ' + ${el.getType()}"/>
+                <h3 th:text="'От герц: ' + ${el.getHzstart()}"/>
+                <h3 th:text="'До герц: ' + ${el.getHzend()}"/>
+            </div>
+
+            <div class="Container" style="margin-top:25px">
+                <div class="row">
+                    <div class="col-1">
+                        <form th:action="${el.id} + '/Edit'" method="Post">
+                            <button type="submit" class="btn btn-primary"> Изменить </button>
+                        </form>
+                    </div>
+
+                    <div class="col-1">
+                        <form th:action="${el.id} + '/Delete'" method="Post">
+                            <button type="submit" class="btn btn-danger"> Удалить </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+</main>
+
+</body>
+
+<footer th:insert="blocks/Footer" :: Footer/>
+
+</html>

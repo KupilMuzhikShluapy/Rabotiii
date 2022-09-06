@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" href="../bootstrap-5.2.0-dist/css/bootstrap.css">
+<link rel="stylesheet" href="../../bootstrap-5.2.0-dist/css/bootstrap.css">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<header th:insert="blocks/Header" :: Header/>
+<body>
+
+
+
+<h2 style="margin-top:50px">Поиск</h2>
+<form method="post" th:action="${'/Audio/HeadFilter/result'}">
+    <div class="Container" style="margin-top:25px">
+        <div class="row">
+            <div class="col-2">
+                <input type="text" class="form-control" style="font-size:21px" name="title">
+            </div>
+            <div class="col-2">
+                <select name = "act" class="form-control" style="font-size:21px; text-align:center; width:200px">
+                    <option value = "Find">Точный поиск</option>
+                    <option value = "Filter">Не точный поиск</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-success" style="margin-top:25px; width:225px; font-size:24px">Найти</button>
+    <center>
+    <div th:each="el : ${result}">
+        <div style="background: #23282b; color:white; padding-top:25px; padding-bottom:15px; margin-top:50px; height:500px; width:500px">
+
+            <h1 th:text="${el.title}"/>
+
+            <center>
+                <div style="width:400px; height:2px; background: black; margin-top:10px"></div>
+            </center>
+
+            <div class="container">
+
+                <div class="row" style="margin-top:40px">
+                    <div class="col-6">
+                        <h5>Модель:</h5>
+                    </div>
+                    <div class="col-6">
+                        <h5>Тип:</h5>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-6">
+                        <h3 th:text="${el.model}"/>
+                    </div>
+                    <div class="col-6">
+                        <h3 th:text="${el.type}"/>
+                    </div>
+                </div>
+
+                <div style="margin-top:50px">
+                    <h5>Герцы от-до</h5>
+                </div>
+
+                <div class="row">
+                    <div class="col-6">
+                        <h3 th:text="${el.hzstart}  + 'гц'"/>
+                    </div>
+                    <div class="col-6">
+                        <h3 th:text="${el.hzend}  + 'гц'"/>
+                    </div>
+                </div>
+
+            </div>
+
+            <h2 th:text="'Цена: ' + ${el.price}" style="margin-top:25px; color:#00FF7F"/>
+
+        </div>
+    </div>
+
+    </center>
+</form>
+</body>
+<footer th:insert="blocks/Footer" :: Footer/>
+</html>

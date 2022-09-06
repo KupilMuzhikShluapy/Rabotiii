@@ -1,16 +1,88 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<link rel="stylesheet" href="../bootstrap-5.2.0-dist/css/bootstrap.css">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+
+    <style>
+        div{
+            margin-top:40px;
+        }
+    </style>
+
 </head>
 
 <header th:insert="blocks/Header" :: Header/>
 
-<body>
+<body style="background: #bdbdbd">
 
 <main>
+    <div style="margin-top:50px">
+        <center>
+            <h2>Добавление новых наушников</h2>
+        </center>
+    </div>
 
+    <form method="post" action="/Audio/HeadAdd">
+        <input type="hidden" name="action" th:value="${action}">
+        <div class="container" style="margin-top:25px">
+            <div>
+                <center>
+                    <div>
+                        <input type="text" name="title" th:value="${title}" class="form-control" style="font-size:32px; text-align:center" placeholder="Название микрофона">
+                    </div>
+
+                    <div>
+                        <div class="row align-items-start">
+                            <div class="col-6">
+                                <input type="text" name="type" th:value="${type}" class="form-control" placeholder="Тип" style="font-size:24px; text-align:center">
+                            </div>
+
+                            <div class="col-6">
+                                <input type="text" name="model" th:value="${model}" class="form-control" placeholder="Модель" style="font-size:24px; text-align:center">
+                            </div>
+                        </div>
+
+                        <div>
+
+                            <div class="row align-items-start">
+                                <div class="col-6">
+                                    <h4>От Герц</h4>
+                                </div>
+
+                                <div class="col-6">
+                                    <h4>До Герц</h4>
+                                </div>
+                            </div>
+
+                            <div class="row align-items-start">
+                                <div class="col-6">
+                                    <input type="number" name="hzstart" th:value="${hzstart}" class="form-control" style="font-size:24px; text-align:center; width:500px" placeholder="40">
+                                </div>
+
+                                <div class="col-6">
+                                    <input type="number" name="hzend" th:value="${hzend}" class="form-control" style="font-size:24px; text-align:center; width:500px" placeholder="20000">
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div>
+                        <h1>Цена</h1>
+                        <input type="number" name="price" th:value="${price}" class="form-control" style="font-size:46px; text-align:center; width:300px" placeholder="999">
+                    </div>
+
+                    <div>
+                        <input type="submit" name="submit" class="btn btn-success" th:value="${button}" style="font-size:36px; margin-top:50px">
+                    </div>
+                </center>
+            </div>
+
+        </div>
+    </form>
 </main>
 
 </body>
