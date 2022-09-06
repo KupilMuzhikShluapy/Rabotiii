@@ -20,17 +20,36 @@
     <div class="container" style="margin-top:50px">
         <div class="row align-items-start">
             <div class="col-6">
-                <form method="post" action="/Audio/HeadphoneAdd">
+                <form method="get" action="/Audio/HeadphoneAdd">
                     <button type="submit" class="btn btn-success">Добавить наушники</button>
                 </form>
+
+                <div style="margin-top:25px">
+                    <center>
+                        <h2>
+                            Наушники:
+                        </h2>
+                        <a href="/Audio/HeadFilter">Поиск</a>
+                    </center>
+                </div>
 
             </div>
             <div class="col-6">
                 <div class="d-flex justify-content-end">
-                    <form method="post" action="/Audio/MickAdd">
+                    <form method="get" action="/Audio/MickAdd">
                         <button type="submit" class="btn btn-success">Добавить микрофон</button>
                     </form>
                 </div>
+
+                <div style="margin-top:25px">
+                    <center>
+                        <h2>
+                            Микрофоны:
+                        </h2>
+                        <a href="/Audio/MickFilter">Поиск</a>
+                    </center>
+                </div>
+
             </div>
         </div>
     </div>
@@ -39,27 +58,136 @@
         <div class="row align-items-start">
 
             <div class="col-6">
-                <div th:each="el : ${HeadphoneList}">
-                    <h3 th:text="${el.title}"/>
-                    <p th:text="${el.type}"/>
-                    <p th:text="${el.model}"/>
-                    <p th:text="${el.hzstart}"/>
-                    <p th:text="${el.hzend}"/>
-                    <p th:text="${el.price}"/>
-                </div>
+                <center>
+                    <div th:each="el : ${HeadphoneList}">
+                        <div style="background: #23282b; color:white; padding-top:25px; padding-bottom:15px; margin-top:50px; height:500px">
+
+                            <h1 th:text="${el.title}"/>
+
+                            <center>
+                                <div style="width:400px; height:2px; background: black; margin-top:10px"></div>
+                            </center>
+
+                            <div class="container">
+
+                                <div class="row" style="margin-top:20px">
+                                    <div class="col-6">
+                                        <h5>Модель:</h5>
+                                    </div>
+                                    <div class="col-6">
+                                        <h5>Тип:</h5>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-6">
+                                        <h3 th:text="${el.model}"/>
+                                    </div>
+                                    <div class="col-6">
+                                        <h3 th:text="${el.type}"/>
+                                    </div>
+                                </div>
+
+                                <center>
+                                    <div style="width:250px; height:1px; background: black; margin-top:40px"></div>
+                                </center>
+
+                                <div style="margin-top:10px">
+                                    <h5>Герцы от-до</h5>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-6">
+                                        <h3 th:text="${el.hzstart}  + 'гц'"/>
+                                    </div>
+                                    <div class="col-6">
+                                        <h3 th:text="${el.hzend}  + 'гц'"/>
+                                    </div>
+                                </div>
+
+                                <center>
+                                    <div style="width:250px; height:1px; background: black; margin-top:60px"></div>
+                                </center>
+
+                            </div>
+
+                            <h2 th:text="'Цена: ' + ${el.price}" style="margin-top:10px; color:#00FF7F"/>
+
+                        </div>
+                    </div>
+                </center>
             </div>
 
             <div class="col-6">
-                <div th:each="el : ${MickList}">
-                    <h3 th:text="${el.title}"/>
-                    <p th:text="${el.type}"/>
-                    <p th:text="${el.model}"/>
-                    <p th:text="${el.hzstart}"/>
-                    <p th:text="${el.hzend}"/>
-                    <p th:text="${el.price}"/>
-                    <p th:text="${el.soundsLike}"/>
-                    <p th:text="${el.country}"/>
-                </div>
+                <center>
+                    <div th:each="el : ${MickList}">
+                        <div style="background: #23282b; color:white; padding-top:25px; padding-bottom:15px; margin-top:50px; height:500px">
+
+                            <h1 th:text="${el.title}"/>
+
+                            <center>
+                                <div style="width:400px; height:2px; background: black; margin-top:10px"></div>
+                            </center>
+
+                            <div class="container">
+
+                                <div class="row" style="margin-top:20px">
+                                    <div class="col-6">
+                                        <h5>Модель:</h5>
+                                    </div>
+                                    <div class="col-6">
+                                        <h5>Тип:</h5>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-6">
+                                        <h3 th:text="${el.model}"/>
+                                    </div>
+                                    <div class="col-6">
+                                        <h3 th:text="${el.type}"/>
+                                    </div>
+                                </div>
+
+                                <center>
+                                    <div style="width:250px; height:1px; background: black; margin-top:40px"></div>
+                                </center>
+
+                                <div style="margin-top:10px">
+                                    <h5>Герцы от-до</h5>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-6">
+                                        <h3 th:text="${el.hzstart}  + 'гц'"/>
+                                    </div>
+                                    <div class="col-6">
+                                        <h3 th:text="${el.hzend}  + 'гц'"/>
+                                    </div>
+                                </div>
+
+                                <center>
+                                    <div style="width:250px; height:1px; background: black; margin-top:60px"></div>
+                                </center>
+
+                            </div>
+
+                            <h2 th:text="'Цена: ' + ${el.price}" style="margin-top:10px; color:#00FF7F"/>
+
+                            <center>
+                            <div class="row">
+                                <div class="col-6">
+                                    <h5 th:text="${el.country}"/>
+                                </div>
+                                <div class="col-6">
+                                    <h5 th:text="${el.soundsLike}"/>
+                                </div>
+                            </div>
+                            </center>
+
+                        </div>
+                    </div>
+                </center>
             </div>
 
         </div>
