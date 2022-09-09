@@ -1,9 +1,12 @@
 package com.example.demo.models;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.Size;
 
 @Entity
 public class HeadphoneModel {
@@ -11,7 +14,12 @@ public class HeadphoneModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
+    @NotEmpty(message = "Переменная не может быть пустой")
+    @Size(min = 2, max = 100, message = "Поле должно быть от 2 до 100 символов")
     private String title, type, model;
+
+    @NotEmpty(message = "Переменная не может быть пустой")
+    @Size(min = 2, max = 10, message = "Поле должно быть от 2 до 10 символов")
     private int hzstart, hzend, price;
 
     public HeadphoneModel() {

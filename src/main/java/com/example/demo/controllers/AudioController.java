@@ -75,7 +75,7 @@ public class AudioController {
     }
 
     @GetMapping("/HeadphoneAdd")
-    public String AudioHeadGetAddMap(Model model){
+    public String AudioHeadGetAddMap(Model model, HeadphoneModel Headphone){
 
         model.addAttribute("action", 0);
         model.addAttribute("button", "Добавить новые наушники");
