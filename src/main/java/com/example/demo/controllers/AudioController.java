@@ -7,8 +7,11 @@ import com.example.demo.repo.MickModelRep;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -75,52 +78,39 @@ public class AudioController {
     }
 
     @GetMapping("/HeadphoneAdd")
-    public String AudioHeadGetAddMap(Model model, HeadphoneModel Headphone){
+    public String AudioHeadGetAddMap(@Valid HeadphoneModel Headphone, Model model){
 
-        model.addAttribute("action", 0);
-        model.addAttribute("button", "Добавить новые наушники");
+        HeadphoneModel head = new HeadphoneModel("","","",0,0,110, 0L);
+
+        model.addAttribute("Headphone", head);
 
         return "AudioPages/HeadAdd";
     }
 
     @PostMapping("/HeadAdd")
     public String AudioHeadPostAddMap(
-            @RequestParam(
-                    name = "title"
-            )String title,
-            @RequestParam(
-                    name = "action"
-            )Long action,
-            @RequestParam(
-                    name = "type"
-            )String type,
-            @RequestParam(
-                    name = "model"
-            )String model,
-            @RequestParam(
-                    name = "hzstart"
-            )int hzstart,
-            @RequestParam(
-                    name = "hzend"
-            )int hzend,
-            @RequestParam(
-                    name = "price"
-            )int price
+             @Valid @ModelAttribute("Headphone") HeadphoneModel Headphone, BindingResult bindingResult, Model model
     ){
 
+        if (bindingResult.hasErrors()){
+            model.addAttribute("Headphone", Headphone);
+
+            return "AudioPages/HeadAdd";
+        }
+
         HeadphoneModel Head;
-        if (action == 0){
-            Head = new HeadphoneModel(title, type, model, hzstart, hzend, price);
+        if (Headphone.getAction() == 0){
+            Head = Headphone;
 
         }else{
-            Head = headphoneModelRep.findById(action).orElseThrow();
+            Head = headphoneModelRep.findById(Headphone.getAction()).orElseThrow();
 
-            Head.setHzend(hzend);
-            Head.setHzstart(hzstart);
-            Head.setModel(model);
-            Head.setPrice(price);
-            Head.setType(type);
-            Head.setTitle(title);
+            Head.setHzend(Headphone.getHzend());
+            Head.setHzstart(Headphone.getHzstart());
+            Head.setModel(Headphone.getModel());
+            Head.setPrice(Headphone.getPrice());
+            Head.setType(Headphone.getType());
+            Head.setTitle(Headphone.getTitle());
         }
 
         headphoneModelRep.save(Head);
@@ -189,15 +179,9 @@ public class AudioController {
     public String HeadEdit(@PathVariable("id")Long id, Model model){
         HeadphoneModel Head = headphoneModelRep.findById(id).orElseThrow();
 
-        model.addAttribute("title", Head.getTitle());
-        model.addAttribute("type", Head.getType());
-        model.addAttribute("model", Head.getModel());
-        model.addAttribute("hzstart", Head.getHzstart());
-        model.addAttribute("hzend", Head.getHzend());
-        model.addAttribute("price", Head.getPrice());
+        Head.setAction(id);
 
-        model.addAttribute("action", id);
-        model.addAttribute("button", "Изменить наушники");
+        model.addAttribute("Headphone", Head);
 
         return "AudioPages/HeadAdd";
     }

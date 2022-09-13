@@ -1,11 +1,17 @@
 package com.example.demo.models;
 
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.lang.NonNull;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
@@ -14,15 +20,33 @@ public class HeadphoneModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @NotEmpty(message = "Переменная не может быть пустой")
     @Size(min = 2, max = 100, message = "Поле должно быть от 2 до 100 символов")
     private String title, type, model;
 
-    @NotEmpty(message = "Переменная не может быть пустой")
-    @Size(min = 2, max = 10, message = "Поле должно быть от 2 до 10 символов")
+    @NotNull(message = "Значение не может быть пустым")
     private int hzstart, hzend, price;
 
+    private Long action;
+
     public HeadphoneModel() {
+    }
+
+    public HeadphoneModel(String title, String type, String model, int hzstart, int hzend, int price, Long action) {
+        this.title = title;
+        this.type = type;
+        this.model = model;
+        this.hzstart = hzstart;
+        this.hzend = hzend;
+        this.price = price;
+        this.action = action;
+    }
+
+    public Long getAction() {
+        return action;
+    }
+
+    public void setAction(Long action) {
+        this.action = action;
     }
 
     public HeadphoneModel(String title, String type, String model, int hzstart, int hzend, int price) {

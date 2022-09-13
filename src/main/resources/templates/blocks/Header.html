@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <link rel="stylesheet" href="bootstrap-5.2.0-dist/css/bootstrap.css">
 <link rel="stylesheet" href="../bootstrap-5.2.0-dist/css/bootstrap.css">
@@ -19,7 +19,29 @@
                 <li><a href="/Audio/" class="nav-link px-2 text-white">АудиоТехника</a></li>
             </ul>
 
+
+
+            <div class="text-end">
+
+                <div class="Container">
+                    <div class="row">
+                        <div class="col">
+                            <form th:action="@{/login}" method="post">
+                                <input type="submit" value="Войти" class="btn btn-outline-light"/>
+                            </form>
+                        </div>
+                        <div class="col">
+                            <form th:action="@{/logout}" method="post">
+                                <input type="submit" value="Выйти" class="btn btn-danger"/>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
         </div>
+
     </div>
 </header>
 </html>

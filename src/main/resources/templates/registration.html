@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<header th:insert="blocks/Header" :: Header/>
+
+<body>
+
+<main>
+
+    <center>
+
+        <div class="shadow-lg p-3 mb-5 bg-dark rounded" style="width:750px; padding:10px;margin-top:50px">
+
+            <h1 style="margin-top:25px; color:white; font-size:60px">Регистрация</h1>
+
+            <div class="form-group" style="margin-top:100px">
+
+                <div th:if="${#messages}">
+                    <p th:text="${message}"></p>
+                </div>
+
+                <form th:action="@{/registration}" method="post" style="margin-top:25px">
+                    <div style="margin-top:25px"><h4 style="color:white">Имя пользователя:</h4> <input type="text" class="form-control" style="width:500px; font-size:26px" name="username"/> </div>
+
+                    <div style="margin-top:25px"><h4 style="color:white">Пароль: </h4><input type="password" class="form-control" style="width:500px; font-size:26px" name="password"/></div>
+
+                    <div style="margin-top:50px"><input type="submit" class="btn btn-success" style="width:500px; font-size:32px" value="Зарегистрироваться"/></div>
+                </form>
+
+            </div>
+
+        </div>
+
+    </center>
+
+
+</main>
+
+</body>
+
+<footer th:insert="blocks/Footer" :: Footer/>
+
+</html>
